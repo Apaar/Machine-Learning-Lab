@@ -61,7 +61,8 @@ def simulate(num_doors, switch, steps):
         if steps:
 
             print('Host opens door {}'.format(door_to_remove+1))
-
+        
+    assert len(closed_doors) == 2
     # Does the contestant want to switch their choice?
 
     if switch:
@@ -86,7 +87,8 @@ def simulate(num_doors, switch, steps):
 
             print('to {}'.format(choice+1))
 
-
+    assert 0 <= winning_door < num_doors, 'Winning door is bad'
+    assert 0 <= choice < num_doors, 'Choice is bad'
     # Did the contestant win?
 
     won = (choice == winning_door)
