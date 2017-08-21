@@ -4,6 +4,8 @@ def Gauss(A, b):
     if b.size != n:
         raise ValueError("Invalid argument: incompatible sizes between A & b.", b.size, n)
     for pivot_row in xrange(n-1):
+        print A
+        print b
         for row in xrange(pivot_row+1, n):
             multiplier = A[row][pivot_row]/A[pivot_row][pivot_row]
             #the only one in this column since the rest are zero
@@ -14,6 +16,8 @@ def Gauss(A, b):
             b[row] = b[row] - multiplier*b[pivot_row]
     print 'RESULTS AFTER GUASSIAN ELIMINATION'
     print '--------------------------------------'
+    print A
+    print b
     x = np.zeros(n)
     #print 'before',x
     k = n-1
@@ -32,7 +36,6 @@ def partial(A, b):
     for pivot_row in xrange(n-1):
         print A
         print b
-        print A[pivot_row:,pivot_row]
         max = A[pivot_row:,pivot_row].argmax()
         if max+pivot_row != pivot_row :
             temp = A[[pivot_row ,max+pivot_row ]]
@@ -66,14 +69,19 @@ def partial(A, b):
     
 
 if __name__ == "__main__":
-    
+    '''
     A = np.array([[2.,1.,-1.],[-3.,-1.,2.],[-2.,1.,2.]])
     b =  np.array([[8.],[-11.],[-3.]])
-    '''
+    
     A = np.array([[2.,1.,-1.],[2.,1.,-1.],[2.,1.,-1.]])
     b =  np.array([[8.],[8.],[7.]])
     '''
-    #print Gauss(A,b)
+
+    A = np.array([[0.02,0.01,0.,0.],[1.,2.,1.,0.],[0.,1.,2.,1.],[0.,0.,100.,200.]])
+    b =  np.array([[0.02],[1.],[4.],[800.]])
+    print Gauss(A,b)
+    A = np.array([[0.02,0.01,0.,0.],[1.,2.,1.,0.],[0.,1.,2.,1.],[0.,0.,100.,200.]])
+    b =  np.array([[0.02],[1.],[4.],[800.]])
     print partial(A,b)
     # Take matrix A
     # Take Matrix b
