@@ -35,9 +35,11 @@ def simulate(num_doors, switch, steps):
 
 
     # The host opens all but two doors.
-
+    assert 0 <= winning_door < num_doors;
+    assert 0 <= choice < num_doors;
+    
     closed_doors = list(range(num_doors))
-
+    
     while len(closed_doors) > 2:
 
         # Randomly choose a door to open.
@@ -49,13 +51,12 @@ def simulate(num_doors, switch, steps):
         # The host will never open the winning door, or the door
 
         # chosen by the contestant.
-
+    
         if door_to_remove == winning_door or door_to_remove == choice:
 
             continue
 
         # Remove the door from the list of closed doors.
-
         closed_doors.remove(door_to_remove)
 
         if steps:
@@ -87,8 +88,8 @@ def simulate(num_doors, switch, steps):
 
             print('to {}'.format(choice+1))
 
-    assert 0 <= winning_door < num_doors, 'Winning door is bad'
-    assert 0 <= choice < num_doors, 'Choice is bad'
+    assert -1 < winning_door <= num_doors-1
+    assert -1 < choice <= num_doors-1
     # Did the contestant win?
 
     won = (choice == winning_door)
@@ -162,7 +163,7 @@ def main():
 
             winning_switchers, args.trials,
 
-            (winning_switchers / args.trials * 100 ) ))
+            (winning_switchers /  args.doors, args.trials * 100 ) ))
 
     print('Not switching won {0:5} times out of {1} ({2}% of the time)'.format(
 
