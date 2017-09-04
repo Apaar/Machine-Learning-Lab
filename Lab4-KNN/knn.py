@@ -24,12 +24,23 @@ print('Train: ',len(trainingSet))
 print('Test: ',len(testSet))
 
 #Calculating Euclidean diastance
+'''
 def Edistance(x1, x2, n):
     distance = 0.0
     for i in range(n):
         distance = distance + abs(float(x2[i]) * float(x2[i]) - float(x1[i]) * float(x1[i]))
         distance = pow(distance,0.5)
     return distance
+'''
+
+#minkowski
+def Edistance(x1, x2, n):
+    distance = 0.0
+    for i in range(n):
+        distance = distance + pow(abs(float(x2[i]) - float(x1[i])),n)
+    distance = pow(distance,1/n)
+    return distance
+
 
 #Checking this function
 x1 = [2, 2, 2]
